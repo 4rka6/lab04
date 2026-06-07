@@ -1,6 +1,6 @@
-#include <print.hpp>
+#include "print.h"
 
 int main() {
-    print("hello");
+    print_hello();
     return 0;
 }

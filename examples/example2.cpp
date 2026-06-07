@@ -1,8 +1,7 @@
-#include <print.hpp>
-#include <fstream>
+#include "print.h"
 
 int main() {
-    std::ofstream file("log.txt");
-    print("hello", file);
+    print_hello();
+    print_hello();
     return 0;
 }
