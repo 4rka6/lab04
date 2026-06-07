@@ -1,0 +1,34 @@
+name: Linux build
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-gcc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: sudo apt update && sudo apt install -y cmake build-essential
+      - name: Build with gcc
+        run: |
+          mkdir -p _build && cd _build
+          cmake ..
+          make
+          make install
+
+  build-clang:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: sudo apt update && sudo apt install -y cmake clang
+      - name: Build with clang
+        run: |
+          mkdir -p _build && cd _build
+          cmake -DCMAKE_CXX_COMPILER=clang++ ..
+          make
+          make install
